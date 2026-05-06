@@ -239,11 +239,11 @@
 
       <!-- FORM -->
       <div id="form-body">
-        <input type="text"  id="first-name" placeholder="First name"   autocomplete="off">
-        <input type="text"  id="last-name"  placeholder="Last name"    autocomplete="off">
+        <input type="text"  id="first-name" placeholder="First name*"   autocomplete="off">
+        <input type="text"  id="last-name"  placeholder="Last name*"    autocomplete="off">
         <input type="email" id="email"      placeholder="Work email"   autocomplete="off">
         <input type="tel"   id="phone"      placeholder="Phone number" autocomplete="off">
-        <input type="text"  id="position"   placeholder="Position"     autocomplete="off">
+        <input type="text"  id="position"   placeholder="Position*"     autocomplete="off">
         <button class="submit-btn" onclick="generateSignature()">Submit</button>
       </div>
 
@@ -304,6 +304,11 @@
       const email    = document.getElementById('email').value.trim();
       const phone    = document.getElementById('phone').value.trim();
       const position = document.getElementById('position').value.trim();
+
+      if (!first || !last || !position) {
+        alert('Please fill in your first name, last name, and position before submitting.');
+        return;
+      }
 
       const html = buildSignatureHTML(first, last, email, phone, position);
       document.getElementById('sig-preview').innerHTML = html;
